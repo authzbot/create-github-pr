@@ -1,0 +1,28 @@
+name: 'FlowPush'
+description: 'Push a change to a repo by calling FlowPush API, running shell commands, and creating a PR.'
+inputs:
+  repo:
+    description: 'Target repo (e.g., owner/repo)'
+    required: true
+  target_branch:
+    description: 'The target branch'
+    required: true
+  pr_branch:
+    description: 'The branch to be used for creating PR. If not provided, defaults to "flowpush/source_repo/action_id"'
+    required: false
+  commands:
+    description: 'Multiline shell commands to run in the target repo'
+    required: true
+  message:
+    description: 'Message to use for commit/PR'
+    required: true
+  auto_merge:
+    description: 'Whether to automatically merge the PR'
+    required: false
+    default: 'false'
+outputs:
+  pull_request_url:
+    description: 'URL of the created pull request'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

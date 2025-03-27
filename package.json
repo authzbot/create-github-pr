@@ -1,0 +1,11 @@
+{
+  "name": "flowpush-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to push changes using FlowPush GitHub App",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/exec": "^1.1.1",
+    "node-fetch": "^2.6.7"
+  }
+}

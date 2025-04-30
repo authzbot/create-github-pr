@@ -32,11 +32,11 @@ jobs:
       - name: Update Stage Environment
         uses: authzbot/create-github-pr@v1
         with:
-          repo: 'myorg/environment-config'  # Repository containing environment configs
+          repo: 'myorg/config-stage'  # Repository containing environment configs
           target_branch: 'main'
           commands: |
             # Update the version in the stage environment config
-            sed -i "s/version: .*/version: ${{ github.event.release.tag_name }}/" stage.yaml
+            sed -i "s/version: .*/version: ${{ github.event.release.tag_name }}/" app.yaml
           message: 'Update Stage environment to version ${{ github.event.release.tag_name }}'
           auto_merge: 'true'  # Auto-merge if tests pass
 ```
@@ -67,10 +67,9 @@ This action uses GitHub's OIDC tokens for secure authentication. Make sure to:
 
 ## Example Use Cases
 
-- Automated dependency updates
 - Configuration file updates
+- Automated dependency updates
 - Documentation updates
-- Automated code formatting
 - Scheduled maintenance tasks
 
 ## Security

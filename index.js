@@ -54,7 +54,7 @@ function isValidBranchName(branch) {
     }
 
     // Step 1: Get GitHub App installation token
-    const response = await fetch('https://api.authz.bot/authenticate', {
+    const response = await fetch('https://api.authz.bot/v1/services/github/tokens', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

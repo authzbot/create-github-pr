@@ -1,5 +1,5 @@
-name: 'FlowPush'
-description: 'Push a change to a repo by calling FlowPush API, running shell commands, and creating a PR.'
+name: 'create-github-pr'
+description: 'Push a change to a repo by calling AuthzBot API, running shell commands, and creating a PR.'
 inputs:
   repo:
     description: 'Target repo (e.g., owner/repo)'

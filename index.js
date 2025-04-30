@@ -1,4 +1,4 @@
-// flowpush-action/index.js
+// authzbot-action/index.js
 
 const core = require('@actions/core');
 const exec = require('@actions/exec');
@@ -33,9 +33,9 @@ function isValidBranchName(branch) {
     const message = core.getInput('message', { required: true });
     const autoMerge = core.getBooleanInput('auto_merge') || false;
     const commands = core.getInput('commands', { required: true });
-    const fpMessage = `FlowPush: ${message}`;
+    const fpMessage = `AuthzBot: ${message}`;
     const pushId = `${process.env.GITHUB_REPOSITORY}/${process.env.GITHUB_RUN_ID}`;
-    const prBranch = core.getInput('pr_branch') || `flowpush/${pushId}`;
+    const prBranch = core.getInput('pr_branch') || `authzbot/${pushId}`;
 
     // Validate the branch name
     if (!isValidBranchName(prBranch)) {
@@ -54,7 +54,7 @@ function isValidBranchName(branch) {
     }
 
     // Step 1: Get GitHub App installation token
-    const response = await fetch('https://api.flowpush.app/authenticate', {
+    const response = await fetch('https://api.authz.bot/authenticate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,8 +76,8 @@ function isValidBranchName(branch) {
 
     // Step 3: Create new branch
     await exec.exec(`git checkout -b ${prBranch}`);
-    await exec.exec('git config user.email "bot@flowpush.app"');
-    await exec.exec('git config user.name "FlowPush"');
+    await exec.exec('git config user.email "actions@authz.bot"');
+    await exec.exec('git config user.name "AuthzBot"');
 
     // Step 4: Execute user-defined shell commands
     await exec.exec('bash', ['-c', commands]);
